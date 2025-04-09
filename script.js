@@ -11,6 +11,7 @@ function getSignal() {
   clearInterval(interval);
   progress = 0;
   const progressBar = document.getElementById("progress");
+  progressBar.style.width = "0%";
 
   interval = setInterval(() => {
     seconds--;
@@ -25,5 +26,5 @@ function getSignal() {
 }
 
 function backToMenu() {
-  alert("Menu pe wapas ja rahe hain... (yahaan aap navigation add kar sakte ho)");
+  alert("Menu pe wapas ja rahe hain...");
 }
