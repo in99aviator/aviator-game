@@ -1,130 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Pro Aviator Simulator</title>
-  <style>
-    body { font-family: Arial; text-align: center; padding: 40px; background: #121212; color: #fff; }
-    h1 { margin-bottom: 5px; }
-    #multiplier { font-size: 60px; margin: 20px 0; color: #00e6e6; }
-    input, button { padding: 10px; font-size: 16px; margin: 5px; }
-    button { cursor: pointer; }
-    .green { color: lime; }
-    .red { color: red; }
-    #balance { font-weight: bold; margin: 10px 0; }
-    #history { margin-top: 20px; }
-    .history-item { display: inline-block; width: 60px; margin: 2px; padding: 5px; border-radius: 5px; }
-    .low { background: #800000; }
-    .mid { background: #cc8400; }
-    .high { background: #006600; }
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aviator Predictor</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div class="container">
+    <h1>Aviator Predictor</h1>
 
-  <h1>Aviator Pro Simulator</h1>
-  <div id="balance">Balance: ₹1000</div>
+    <div class="controls">
+      <label for="prediction">Enter Prediction Multiplier:</label>
+      <input type="number" id="prediction" step="0.1" placeholder="e.g. 1.75" />
+      <button onclick="makePrediction()">Predict</button>
+    </div>
 
-  <input type="number" id="betAmount" placeholder="Bet Amount" min="1" />
-  <input type="number" id="autoCashout" placeholder="Auto Cash-Out X" step="0.1" min="1" />
-  <br>
-  <button onclick="startGame()">Start</button>
-  <button onclick="cashOut()">Cash Out</button>
+    <div class="result">
+      <h2>Result:</h2>
+      <p id="resultDisplay">No prediction made yet.</p>
+    </div>
 
-  <div id="multiplier">1.00x</div>
-  <p id="status"></p>
+    <div class="history">
+      <h3>Prediction History</h3>
+      <ul id="historyList"></ul>
+    </div>
+  </div>
 
-  <div id="history"><h3>Last 10 Multipliers</h3></div>
-
-  <!-- Sounds -->
-  <audio id="cashSound" src="https://www.soundjay.com/buttons/sounds/button-09.mp3" preload="auto"></audio>
-  <audio id="crashSound" src="https://www.soundjay.com/button/sounds/beep-07.mp3" preload="auto"></audio>
-
-  <script>
-    let multiplier = 1.0;
-    let interval;
-    let isCrashed = false;
-    let hasCashedOut = false;
-    let balance = 1000;
-    let bet = 0;
-    let crashPoint = 2.0;
-    let history = [];
-
-    const multiplierDisplay = document.getElementById("multiplier");
-    const statusDisplay = document.getElementById("status");
-    const balanceDisplay = document.getElementById("balance");
-    const cashSound = document.getElementById("cashSound");
-    const crashSound = document.getElementById("crashSound");
-
-    function updateBalance() {
-      balanceDisplay.innerText = `Balance: ₹${balance.toFixed(2)}`;
-    }
-
-    function updateHistory(mult) {
-      if (history.length >= 10) history.shift();
-      history.push(mult);
-
-      let html = "<h3>Last 10 Multipliers</h3>";
-      history.forEach(m => {
-        let className = m < 2 ? 'low' : m < 4 ? 'mid' : 'high';
-        html += `<span class="history-item ${className}">${m.toFixed(2)}x</span>`;
-      });
-      document.getElementById("history").innerHTML = html;
-    }
-
-    function startGame() {
-      if (interval) clearInterval(interval);
-      multiplier = 1.0;
-      isCrashed = false;
-      hasCashedOut = false;
-      statusDisplay.innerText = '';
-      multiplierDisplay.innerText = "1.00x";
-
-      bet = parseFloat(document.getElementById("betAmount").value);
-      const autoCash = parseFloat(document.getElementById("autoCashout").value);
-
-      if (!bet || bet <= 0 || bet > balance) {
-        statusDisplay.innerHTML = `<span class='red'>Invalid bet amount!</span>`;
-        return;
-      }
-
-      balance -= bet;
-      updateBalance();
-
-      crashPoint = (Math.random() * 5 + 1).toFixed(2); // 1x to 6x
-
-      interval = setInterval(() => {
-        multiplier += 0.05;
-        multiplierDisplay.innerText = multiplier.toFixed(2) + "x";
-
-        // Auto cash-out check
-        if (!hasCashedOut && autoCash && multiplier >= autoCash) {
-          cashOut(true);
-        }
-
-        if (multiplier >= crashPoint) {
-          clearInterval(interval);
-          isCrashed = true;
-          updateHistory(multiplier);
-          if (!hasCashedOut) {
-            crashSound.play();
-            statusDisplay.innerHTML = `<span class='red'>Plane Crashed at ${crashPoint}x! You lost ₹${bet}!</span>`;
-          }
-        }
-      }, 100);
-    }
-
-    function cashOut(auto = false) {
-      if (isCrashed || hasCashedOut || !bet) return;
-      hasCashedOut = true;
-      clearInterval(interval);
-      const winnings = (bet * multiplier).toFixed(2);
-      balance += parseFloat(winnings);
-      updateBalance();
-      updateHistory(multiplier);
-      cashSound.play();
-      statusDisplay.innerHTML = `<span class='green'>${auto ? "Auto" : "Manual"} Cash-Out at ${multiplier.toFixed(2)}x — You won ₹${winnings}!</span>`;
-    }
-  </script>
-
+  <script src="script.js"></script>
 </body>
-</html>>
+</html>
