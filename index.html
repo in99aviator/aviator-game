@@ -109,9 +109,9 @@
 
   <div class="topbar">in 99 Soft Dev Pvt Ltd.</div>
 
-  <img src="https://i.ibb.co/sWT6Zy6/aviator-icon.png" alt="Aviator Logo" class="logo">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjCGpCUnj-ztf4jIapbmzdW9B0lZBBCLqrRQ&s" alt="Aviator Logo" class="logo">
 
-  <div class="counter-circle" id="signalBox">257.57x</div>
+  <div class="counter-circle" id="signalBox">2.57x</div>
 
   <div class="timer-text">44 seconds</div>
 
@@ -132,7 +132,7 @@
       // let newSignal = data.signal;
 
       // Demo random signal
-      let newSignal = (Math.random() * 999 + 1).toFixed(2);
+      let newSignal = (Math.random() * 499 + 1).toFixed(2);
       box.innerText = `${newSignal}x`;
 
       // Animate the circle
@@ -151,7 +151,7 @@
     function sendToTelegram(signal) {
       const botToken = "7362064998:AAFppqLw-xbRlxr7hVtKfh7K9-ktSgE4VP0";
       const chatId = "7695907004";
-      const message = `New Aviator Signal: ${signal}x`;
+      const message = `❤New Aviator Signal: ${signal}x ✅`;
 
       // Commented out for demo, use in real deployment
       
@@ -167,7 +167,7 @@
     }
 
     // Auto signal change every 5 seconds
-    setInterval(getSignal, 5000);
+    setInterval(getSignal, 44000);
   </script>
 </body>
 </html>
