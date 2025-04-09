@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Aviator Signal Bot</title>
+  <title>Aviator Signal Bot - in 99 Soft Dev Pvt Ltd.</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -41,21 +41,25 @@
       font-weight: bold;
       color: white;
       border: 5px solid #ff2e63;
-      animation: pulse 1.5s infinite ease-in-out;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .pulse {
+      animation: pulse 1.2s ease-in-out;
     }
 
     @keyframes pulse {
       0% {
         transform: scale(1);
-        box-shadow: 0 0 10px #ff2e63, 0 0 20px #ff2e63;
+        box-shadow: 0 0 10px #ff2e63;
       }
       50% {
-        transform: scale(1.08);
+        transform: scale(1.1);
         box-shadow: 0 0 25px #ff2e63, 0 0 50px #ff2e63;
       }
       100% {
         transform: scale(1);
-        box-shadow: 0 0 10px #ff2e63, 0 0 20px #ff2e63;
+        box-shadow: 0 0 10px #ff2e63;
       }
     }
 
@@ -107,7 +111,7 @@
 
   <img src="https://i.ibb.co/sWT6Zy6/aviator-icon.png" alt="Aviator Logo" class="logo">
 
-  <div class="counter-circle">257.57x</div>
+  <div class="counter-circle" id="signalBox">257.57x</div>
 
   <div class="timer-text">44 seconds</div>
 
@@ -119,13 +123,51 @@
   <button class="btn" onclick="backToMenu()">Back to menu</button>
 
   <script>
-    function getSignal() {
-      alert("Signal sent! (Connect with bot logic here)");
+    async function getSignal() {
+      const box = document.getElementById("signalBox");
+
+      // Fake API call (replace with real API URL later)
+      // let response = await fetch('https://your-api.com/signal');
+      // let data = await response.json();
+      // let newSignal = data.signal;
+
+      // Demo random signal
+      let newSignal = (Math.random() * 999 + 1).toFixed(2);
+      box.innerText = `${newSignal}x`;
+
+      // Animate the circle
+      box.classList.remove("pulse");
+      void box.offsetWidth;
+      box.classList.add("pulse");
+
+      // Send to Telegram (setup needed)
+      sendToTelegram(newSignal);
     }
 
     function backToMenu() {
-      alert("Going back to menu! (Add navigation here)");
+      alert("Back to menu clicked");
     }
+
+    function sendToTelegram(signal) {
+      const botToken = "YOUR_BOT_TOKEN";
+      const chatId = "YOUR_CHAT_ID";
+      const message = `New Aviator Signal: ${signal}x`;
+
+      // Commented out for demo, use in real deployment
+      /*
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        })
+      });
+      */
+    }
+
+    // Auto signal change every 5 seconds
+    setInterval(getSignal, 5000);
   </script>
 </body>
 </html>
