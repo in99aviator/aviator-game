@@ -41,6 +41,22 @@
       font-weight: bold;
       color: white;
       border: 5px solid #ff2e63;
+      animation: pulse 1.5s infinite ease-in-out;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px #ff2e63, 0 0 20px #ff2e63;
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 25px #ff2e63, 0 0 50px #ff2e63;
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px #ff2e63, 0 0 20px #ff2e63;
+      }
     }
 
     .timer-text {
@@ -89,7 +105,7 @@
 
   <div class="topbar">in 99 Soft Dev Pvt Ltd.</div>
 
-  <img src="https://i.ibb.co/sWT6Zy6/aviator-icon.png" alt="Aviator Logo" class="logo"> <!-- You can replace with your own hosted image -->
+  <img src="https://i.ibb.co/sWT6Zy6/aviator-icon.png" alt="Aviator Logo" class="logo">
 
   <div class="counter-circle">257.57x</div>
 
