@@ -1,55 +1,77 @@
-body {
+* {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to top, #001f3f, #003366);
-  color: white;
-  overflow: hidden;
-}
-.game-container {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-}
-.plane {
-  position: absolute;
-  width: 80px;
-  top: 70%;
-  left: 10%;
-  transition: transform 0.1s linear;
-}
-.hud {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-.multiplier {
-  font-size: 50px;
-  color: #00ffcc;
-  margin: 10px 0;
-}
-.controls {
-  margin-top: 20px;
-}
-input, button {
-  padding: 10px;
-  font-size: 16px;
-  margin: 5px;
-}
-.status {
-  font-size: 18px;
-  margin-top: 10px;
-}
-#history {
-  margin-top: 20px;
-  font-size: 16px;
-}
-#leaderboard {
-  margin-top: 20px;
-}
-#leaderboard ul {
-  list-style: none;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #111;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.container {
+  background: #1e1e1e;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+input[type="number"] {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  padding: 10px;
+  background-color: #e50914;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #ff2e2e;
+}
+
+.result, .history {
+  background-color: #2a2a2a;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+#historyList {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+#historyList li {
+  padding: 5px 0;
+  border-bottom: 1px solid #444;
 }
