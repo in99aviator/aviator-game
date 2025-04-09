@@ -1,40 +1,29 @@
-let history = [];
+let progress = 0;
+let interval;
 
-function makePrediction() {
-  const input = document.getElementById("prediction");
-  const resultDisplay = document.getElementById("resultDisplay");
-  const historyList = document.getElementById("historyList");
+function getSignal() {
+  const multiplier = (Math.random() * 300).toFixed(2);
+  document.getElementById("multiplier").innerText = `${multiplier}x`;
 
-  const userPrediction = parseFloat(input.value);
-  if (isNaN(userPrediction) || userPrediction <= 0) {
-    resultDisplay.textContent = "कृपया एक सही prediction दर्ज करें।";
-    return;
-  }
+  let seconds = 44;
+  document.getElementById("seconds").innerText = `${seconds} seconds`;
 
-  // Simulate actual result (random multiplier between 1.00 to 5.00)
-  const actualMultiplier = (Math.random() * 4 + 1).toFixed(2);
+  clearInterval(interval);
+  progress = 0;
+  const progressBar = document.getElementById("progress");
 
-  let outcome = "";
-  if (userPrediction <= actualMultiplier) {
-    outcome = "सही भविष्यवाणी! (जीत)";
-  } else {
-    outcome = "गलत भविष्यवाणी। (हार)";
-  }
+  interval = setInterval(() => {
+    seconds--;
+    progress += 100 / 44;
+    progressBar.style.width = `${progress}%`;
+    document.getElementById("seconds").innerText = `${seconds} seconds`;
 
-  const resultText = `आपने अनुमान लगाया: ${userPrediction}, असली मल्टीप्लायर था: ${actualMultiplier} → ${outcome}`;
-  resultDisplay.textContent = resultText;
+    if (seconds <= 0) {
+      clearInterval(interval);
+    }
+  }, 1000);
+}
 
-  // Save to history
-  history.unshift(resultText);
-  if (history.length > 10) history.pop();
-
-  // Update history list
-  historyList.innerHTML = "";
-  history.forEach(item => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    historyList.appendChild(li);
-  });
-
-  input.value = "";
+function backToMenu() {
+  alert("Menu pe wapas ja rahe hain... (yahaan aap navigation add kar sakte ho)");
 }
