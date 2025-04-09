@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aviator Game Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="game-container">
+  <img src="https://cdn-icons-png.flaticon.com/512/808/808486.png" class="plane" id="plane">
+  <div class="hud">
+    <div id="balance">Balance: ₹1000</div>
+    <div class="multiplier" id="multiplier">1.00x</div>
+    <div class="controls">
+      <input type="number" id="betAmount" placeholder="Bet Amount" />
+      <input type="number" id="autoCashout" placeholder="Auto Cash-Out X" step="0.1" />
+      <br>
+      <button onclick="startGame()">Start</button>
+      <button onclick="cashOut()">Cash Out</button>
+      <button onclick="toggleAutoPlay()">Auto Play: OFF</button>
+    </div>
+    <div class="status" id="status"></div>
+    <div id="history">History: <span id="historyValues"></span></div>
+    <div id="leaderboard"><h3>Leaderboard</h3><ul id="players"></ul></div>
+  </div>
+</div>
+
+<audio id="crashSound" src="https://www.soundjay.com/mechanical/sounds/metal-crash-01.mp3" preload="auto"></audio>
+<audio id="cashoutSound" src="https://www.soundjay.com/button/sounds/button-3.mp3" preload="auto"></audio>
+<audio id="startSound" src="https://www.soundjay.com/button/sounds/button-16.mp3" preload="auto"></audio>
+
+<script src="animation.js"></script>
+<script src="sound.js"></script>
+<script src="history.js"></script>
+<script src="leaderboard.js"></script>
+<script src="vibration.js"></script>
+<script src="core.js"></script>
+</body>
+</html>

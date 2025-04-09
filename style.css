@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to top, #001f3f, #003366);
+  color: white;
+  overflow: hidden;
+}
+.game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+}
+.plane {
+  position: absolute;
+  width: 80px;
+  top: 70%;
+  left: 10%;
+  transition: transform 0.1s linear;
+}
+.hud {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.multiplier {
+  font-size: 50px;
+  color: #00ffcc;
+  margin: 10px 0;
+}
+.controls {
+  margin-top: 20px;
+}
+input, button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 5px;
+}
+.status {
+  font-size: 18px;
+  margin-top: 10px;
+}
+#history {
+  margin-top: 20px;
+  font-size: 16px;
+}
+#leaderboard {
+  margin-top: 20px;
+}
+#leaderboard ul {
+  list-style: none;
+  padding: 0;
+}
