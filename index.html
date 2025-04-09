@@ -1,32 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aviator Predictor</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Aviator Signal Bot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at center, #220013, #000);
+      color: white;
+      text-align: center;
+    }
+
+    .topbar {
+      padding: 10px 15px;
+      background: #111;
+      font-size: 18px;
+      font-weight: bold;
+      color: #ff2e63;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+    }
+
+    .logo {
+      margin-top: 20px;
+      width: 150px;
+      opacity: 0.8;
+    }
+
+    .counter-circle {
+      margin: 40px auto 20px;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: #0a0a23;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      font-weight: bold;
+      color: white;
+      border: 5px solid #ff2e63;
+    }
+
+    .timer-text {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #ccc;
+    }
+
+    .progress-bar {
+      width: 70%;
+      margin: 20px auto;
+      height: 8px;
+      background: #555;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 44%;
+      height: 100%;
+      background: #ff2e63;
+    }
+
+    .btn {
+      display: block;
+      width: 70%;
+      margin: 10px auto;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(145deg, #ff2e63, #d60043);
+      color: white;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(145deg, #ff466e, #e0004f);
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Aviator Predictor</h1>
 
-    <div class="controls">
-      <label for="prediction">Enter Prediction Multiplier:</label>
-      <input type="number" id="prediction" step="0.1" placeholder="e.g. 1.75" />
-      <button onclick="makePrediction()">Predict</button>
-    </div>
+  <div class="topbar">in 99 Soft Dev Pvt Ltd.</div>
 
-    <div class="result">
-      <h2>Result:</h2>
-      <p id="resultDisplay">No prediction made yet.</p>
-    </div>
+  <img src="https://i.ibb.co/sWT6Zy6/aviator-icon.png" alt="Aviator Logo" class="logo"> <!-- You can replace with your own hosted image -->
 
-    <div class="history">
-      <h3>Prediction History</h3>
-      <ul id="historyList"></ul>
-    </div>
+  <div class="counter-circle">257.57x</div>
+
+  <div class="timer-text">44 seconds</div>
+
+  <div class="progress-bar">
+    <div class="progress-fill"></div>
   </div>
 
-  <script src="script.js"></script>
+  <button class="btn" onclick="getSignal()">GET SIGNAL</button>
+  <button class="btn" onclick="backToMenu()">Back to menu</button>
+
+  <script>
+    function getSignal() {
+      alert("Signal sent! (Connect with bot logic here)");
+    }
+
+    function backToMenu() {
+      alert("Going back to menu! (Add navigation here)");
+    }
+  </script>
 </body>
 </html>
